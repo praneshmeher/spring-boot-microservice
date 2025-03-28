@@ -60,7 +60,7 @@ public class AccountsServiceImpl implements AccountsService {
         AccountsDto accountsDto = customerDto.getAccountsDto();
         if (null != accountsDto){
             Accounts account = accountsRepository.findById(accountsDto.getAccountNumber()).orElseThrow(
-                    () -> new ResourceNotFoundException("","","")
+                    () -> new ResourceNotFoundException("Account","Account Number","")
             );
             AccountsMapper.mapToAccounts(accountsDto, account);
             account = accountsRepository.save(account);
