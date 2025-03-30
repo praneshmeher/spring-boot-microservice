@@ -1,11 +1,26 @@
 services:
   accounts:
     image: "accounts:v1"
-    container_name: accounts_ms
+    container_name: accounts-ms
     ports:
       - "8080:8080"
     networks:
-      - "bank"
+      - bank
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_APPLICATION_NAME: "accounts"
+    depends_on:
+      configserver:
+        condition: service_started
+
+  configserver:
+    image: "configserver:v1"
+    container_name: configserver-ms
+    ports:
+      - "8071:8071"
+    networks:
+      - bank
 
 networks:
   bank:
