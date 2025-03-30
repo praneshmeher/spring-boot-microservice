@@ -1,0 +1,12 @@
+services:
+  accounts:
+    image: "accounts:v1"
+    container_name: accounts_ms
+    ports:
+      - "8080:8080"
+    networks:
+      - "bank"
+
+networks:
+  bank:
+    driver: "bridge"

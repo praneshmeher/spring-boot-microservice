@@ -32,3 +32,9 @@ accounts:
   onCallSupport:
     - (555) 555-1234
     - (555) 523-1345
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
