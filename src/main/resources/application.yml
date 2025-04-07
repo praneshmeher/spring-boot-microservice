@@ -18,9 +18,36 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
   config:
     import: "optional:configserver:http://localhost:8071/"
+
+#----------------------------------------------------
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#  info:
+#    env:
+#      enabled: true
+
+#----------------------------------------------------
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+info:
+  app:
+    name: "accounts"
+    description: "Bank Accounts Application"
+    version: "1.0.0"
+
+#----------------------------------------------------
 
 build:
   version: "1.0"
@@ -33,27 +60,3 @@ accounts:
   onCallSupport:
     - (555) 555-1234
     - (555) 523-1345
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  info:
-    env:
-      enabled: true
-
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:8070/eureka/
-
-info:
-  app:
-    name: "accounts"
-    description: "Bank Accounts Application"
-    version: "1.0.0"
